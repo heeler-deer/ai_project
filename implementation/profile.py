@@ -1,4 +1,3 @@
-# profile the experiment using tensorboard
 
 from __future__ import annotations
 
