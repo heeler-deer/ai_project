@@ -81,8 +81,8 @@ class Profiler:
             'score': score
         }
         path = os.path.join(self._json_dir, f'samples_{sample_order}.json')
-        with open(path, 'w') as json_file:
-            json.dump(content, json_file)
+        with open(path, 'w',encoding='utf-8') as json_file:
+            json.dump(content, json_file, ensure_ascii=False)
 
     def register_function(self, programs: code_manipulation.Function):
         if self._max_log_nums is not None and self._num_samples >= self._max_log_nums:
