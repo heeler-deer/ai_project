@@ -118,7 +118,7 @@ class ProgramsDatabase:
         """Returns a prompt containing implementations from one chosen island with a probability of 1-p
         Returns a prompt containing implementations from one chosen island and two codes with a probability of p
         """
-        p=0.3
+        p=0
         island_id = np.random.randint(len(self._islands))
         if random.random()<p:
             print("<<<<<<<<<Select two codes>>>>>>>>>>")
