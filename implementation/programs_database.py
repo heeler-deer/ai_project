@@ -116,20 +116,16 @@ class ProgramsDatabase:
         return Prompt(code, version_generated, island_id)
     def get_prompt(self) -> Prompt:
         """Returns a prompt containing implementations from one chosen island with a probability of 1-p
-        Returns a prompt containing implementations from two chosen islands with a probability of p
+        Returns a prompt containing implementations from one chosen island and two codes with a probability of p
         """
         p=0.3
-        
+        island_id = np.random.randint(len(self._islands))
         if random.random()<p:
-            print("<<<<<<<<<Select two islands>>>>>>>>>>")
-            island_ids = np.random.choice(len(self._islands), size=2, replace=False)
-            island_id1 = island_ids[0]
-            island_id2 = island_ids[1]
-            code1, version_generated1 = self._islands[island_id1].get_prompt()
-            code2, version_generated2 = self._islands[island_id2].get_prompt()
-            return Prompt(code1, version_generated1, island_id1),Prompt(code2, version_generated2, island_id2),
+            print("<<<<<<<<<Select two codes>>>>>>>>>>")
+            code1, version_generated1 = self._islands[island_id].get_prompt()
+            code2, version_generated2 = self._islands[island_id].get_prompt()
+            return Prompt(code1, version_generated1, island_id),Prompt(code2, version_generated2, island_id),
         else:   
-            island_id = np.random.randint(len(self._islands))
             code, version_generated = self._islands[island_id].get_prompt()
             return Prompt(code, version_generated, island_id),None
     def _register_program_in_island(
