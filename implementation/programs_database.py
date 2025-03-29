@@ -119,6 +119,7 @@ class ProgramsDatabase:
         p=0.7
         
         if random.random()<p:
+            print("<<<<<<<<<Select two islands>>>>>>>>>>")
             island_ids = np.random.choice(len(self._islands), size=2, replace=False)
             island_id1 = island_ids[0]
             island_id2 = island_ids[1]
