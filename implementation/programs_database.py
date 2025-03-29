@@ -115,8 +115,10 @@ class ProgramsDatabase:
         code, version_generated = self._islands[island_id].get_prompt()
         return Prompt(code, version_generated, island_id)
     def get_prompt(self) -> Prompt:
-        """Returns a prompt containing implementations from one chosen island."""
-        p=0.7
+        """Returns a prompt containing implementations from one chosen island with a probability of 1-p
+        Returns a prompt containing implementations from two chosen islands with a probability of p
+        """
+        p=0.3
         
         if random.random()<p:
             print("<<<<<<<<<Select two islands>>>>>>>>>>")
@@ -140,6 +142,7 @@ class ProgramsDatabase:
         """Registers `program` in the specified island."""
         self._islands[island_id].register_program(program, scores_per_test)
         score = _reduce_score(scores_per_test)
+        # TODO: record best score in all islands:  self._best_score
         if score > self._best_score_per_island[island_id]:
             self._best_program_per_island[island_id] = program
             self._best_scores_per_test_per_island[island_id] = scores_per_test

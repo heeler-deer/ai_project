@@ -114,7 +114,6 @@ class Profiler:
         print(f'Evaluate time: {str(evaluate_time)}')
         print(f'Sample orders: {str(sample_orders)}')
         print(f'======================================================\n\n')
-
         # update best function
         if function.score is not None and score > self._cur_best_program_score:
             self._cur_best_program_score = score
