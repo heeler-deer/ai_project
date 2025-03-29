@@ -90,15 +90,20 @@ class Sampler:
             # stop the search process if hit global max sample nums
             if self._max_sample_nums and self.__class__._global_samples_nums >= self._max_sample_nums:
                 break
-            prompt = self._database.get_prompt()
+            # TODO: two prompt
+            prompt1,prompt2 = self._database.get_prompt()
+            if prompt2 == None:
             # print("get prompt")
-            reset_time = time.time()
-            samples = self._llm.draw_samples(prompt.code)
+                reset_time = time.time()
+                samples = self._llm.draw_samples(prompt1.code)
+            else:
+                reset_time = time.time()
+                samples = self._llm.draw_samples(prompt1.code+prompt2.code)
             # print("get_samples")
             sample_time = (time.time() - reset_time) / self._samples_per_prompt
             # This loop can be executed in parallel on remote evaluator machines.
             # print("begin sample's eva")
-            for sample in tqdm(samples):
+            for sample in samples:
                 self._global_sample_nums_plus_one() 
                 cur_global_sample_nums = self._get_global_sample_nums()
                 chosen_evaluator: evaluator.Evaluator = np.random.choice(self._evaluators)
@@ -108,8 +113,8 @@ class Sampler:
                 
                 chosen_evaluator.analyse(
                     sample,
-                    prompt.island_id,
-                    prompt.version_generated,
+                    prompt1.island_id,
+                    prompt1.version_generated,
                     **kwargs,
                     global_sample_nums=cur_global_sample_nums,
                     sample_time=sample_time

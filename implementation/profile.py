@@ -100,6 +100,7 @@ class Profiler:
         function = self._all_sampled_functions[sample_orders]
         # function_name = function.name
         # function_body = function.body.strip('\n')
+        #TODO: record best score
         function_str = str(function).strip('\n')
         sample_time = function.sample_time
         evaluate_time = function.evaluate_time

@@ -31,6 +31,8 @@ from implementation import code_manipulation
 from implementation import config as config_lib
 
 
+import random
+
 Signature = Tuple[float, ...]
 ScoresPerTest = Mapping[Any, float]
 
@@ -106,13 +108,27 @@ class ProgramsDatabase:
                 [None] * config.num_islands)
 
         self._last_reset_time: float = time.time()
-
+    ## TODO: return two island prompt
     def get_prompt(self) -> Prompt:
         """Returns a prompt containing implementations from one chosen island."""
         island_id = np.random.randint(len(self._islands))
         code, version_generated = self._islands[island_id].get_prompt()
         return Prompt(code, version_generated, island_id)
-
+    def get_prompt(self) -> Prompt:
+        """Returns a prompt containing implementations from one chosen island."""
+        p=0.7
+        
+        if random.random()<p:
+            island_ids = np.random.choice(len(self._islands), size=2, replace=False)
+            island_id1 = island_ids[0]
+            island_id2 = island_ids[1]
+            code1, version_generated1 = self._islands[island_id1].get_prompt()
+            code2, version_generated2 = self._islands[island_id2].get_prompt()
+            return Prompt(code1, version_generated1, island_id1),Prompt(code2, version_generated2, island_id2),
+        else:   
+            island_id = np.random.randint(len(self._islands))
+            code, version_generated = self._islands[island_id].get_prompt()
+            return Prompt(code, version_generated, island_id),None
     def _register_program_in_island(
             self,
             program: code_manipulation.Function,
@@ -237,7 +253,7 @@ class Island:
         # At the beginning of an experiment when we have few clusters, place fewer
         # programs into the prompt.
         functions_per_prompt = min(len(self._clusters), self._functions_per_prompt)
-
+        ## based on probabilities to choose code
         idx = np.random.choice(
             len(signatures), size=functions_per_prompt, p=probabilities)
         chosen_signatures = [signatures[i] for i in idx]
