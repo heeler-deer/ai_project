@@ -120,6 +120,7 @@ class ProgramsDatabase:
         """
         p=0
         island_id = np.random.randint(len(self._islands))
+        print(f"<<<<<<<<<<<<<<<island_id: {str(island_id)}>>>>>>>>>>>>>>>>>")
         if random.random()<p:
             print("<<<<<<<<<Select two codes>>>>>>>>>>")
             code1, version_generated1 = self._islands[island_id].get_prompt()
