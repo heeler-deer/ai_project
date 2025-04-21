@@ -115,7 +115,7 @@ class Profiler:
         print(f'Sample orders: {str(sample_orders)}')
         print(f'======================================================\n\n')
         # update best function
-        if function.score is not None and score > self._cur_best_program_score:
+        if function.score is not None and score > self._cur_best_program_score and score != 0.0:
             self._cur_best_program_score = score
             self._cur_best_program_sample_order = sample_orders
         # update statistics about function
