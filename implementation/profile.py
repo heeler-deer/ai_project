@@ -118,10 +118,6 @@ class Profiler:
         if function.score is not None and score > self._cur_best_program_score:
             self._cur_best_program_score = score
             self._cur_best_program_sample_order = sample_orders
-            print(f'================= Current Best Function =================')
-            print(f'Current best program sample order: {str(self._cur_best_program_sample_order)}')
-            print(f'Current best program score: {str(self._cur_best_program_score)}')
-            print(f'======================================================\n\n')
         # update statistics about function
         if score:
             self._evaluate_success_program_num += 1
@@ -132,7 +128,11 @@ class Profiler:
             self._tot_sample_time += sample_time
         if evaluate_time:
             self._tot_evaluate_time += evaluate_time
-
+        # print current best result
+        print(f'================= Current Best Function =================')
+        print(f'Current best program sample order: {str(self._cur_best_program_sample_order)}')
+        print(f'Current best program score: {str(self._cur_best_program_score)}')
+        print(f'======================================================\n\n')
         # update ...
         # self._each_sample_best_program_score.append(self._cur_best_program_score)
         # self._each_sample_evaluate_success_program_num.append(self._evaluate_success_program_num)
