@@ -83,7 +83,7 @@ class Sampler:
         self._llm = llm_class(samples_per_prompt)
         self._max_sample_nums = max_sample_nums
 
-    def sample(self, **kwargs):
+    def sample(self, p,**kwargs):
         """Continuously gets prompts, samples programs, sends them for analysis.
         """
         while True:
@@ -91,7 +91,7 @@ class Sampler:
             if self._max_sample_nums and self.__class__._global_samples_nums >= self._max_sample_nums:
                 break
             # TODO: two prompt
-            prompt1,prompt2 = self._database.get_prompt()
+            prompt1,prompt2 = self._database.get_prompt(p)
             if prompt2 == None:
             # print("get prompt")
                 reset_time = time.time()

@@ -43,6 +43,7 @@ def _extract_function_names(specification: str) -> Tuple[str, str]:
 
 def main(
         specification: str,
+        p:float,
         inputs: Sequence[Any],
         config: config_lib.Config,
         max_sample_nums: int | None,
@@ -87,4 +88,4 @@ def main(
     # sampler enters an infinite loop, without parallelization only the first
     # sampler will do any work.
     for s in tqdm(samplers):
-        s.sample(profiler=profiler)
+        s.sample(p=p,profiler=profiler)

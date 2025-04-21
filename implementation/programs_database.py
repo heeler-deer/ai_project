@@ -114,11 +114,10 @@ class ProgramsDatabase:
         island_id = np.random.randint(len(self._islands))
         code, version_generated = self._islands[island_id].get_prompt()
         return Prompt(code, version_generated, island_id)
-    def get_prompt(self) -> Prompt:
+    def get_prompt(self,p) -> Prompt:
         """Returns a prompt containing implementations from one chosen island with a probability of 1-p
         Returns a prompt containing implementations from one chosen island and two codes with a probability of p
         """
-        p=0
         island_id = np.random.randint(len(self._islands))
         print(f"<<<<<<<<<<<<<<<island_id: {str(island_id)}>>>>>>>>>>>>>>>>>")
         if random.random()<p:
