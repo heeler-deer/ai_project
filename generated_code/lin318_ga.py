@@ -1,4 +1,4 @@
-#-52485 18 p=0.5 lin318
+
 def priority(current_city, distances, visited):
     """Calculate complex priorities for each city from the current city based on negative distance and other factors."""
     """Further improved version of priority calculation with additional factors."""

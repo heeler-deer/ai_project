@@ -1,4 +1,4 @@
-# -715.7072546517331 52 eli51
+
 def priority(current_city, distances, visited):
     """Calculate complex priorities for each city from the current city based on negative distance and other factors."""
     """Highly enhanced priority calculation function incorporating multiple metrics and dynamic adjustments."""

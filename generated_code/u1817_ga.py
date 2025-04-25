@@ -91,7 +91,7 @@ def evaluate(distance_matrix):
     return -total_distance
 
 
-#u1817 p=0.5 -68490
+
 def priority(current_city, distances, visited):
     """Calculate complex priorities for each city from the current city based on negative distance and other factors."""
     """More complex priority calculation incorporating multiple factors."""

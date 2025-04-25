@@ -1,4 +1,4 @@
-#gr137 p=0.5 -993
+
 def priority(current_city, distances, visited):
     """Calculate complex priorities for each city from the current city based on negative distance and other factors."""
     num_cities = len(distances)
