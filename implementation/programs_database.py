@@ -108,7 +108,6 @@ class ProgramsDatabase:
                 [None] * config.num_islands)
 
         self._last_reset_time: float = time.time()
-    ## TODO: return two island prompt
     def get_prompt_(self) -> Prompt:
         """Returns a prompt containing implementations from one chosen island."""
         island_id = np.random.randint(len(self._islands))
