@@ -51,7 +51,7 @@ def prepare_dataset(filename):
   # print(node_coords)
 
 # filepath = ['ai_project/smaples_data/ali535.tsp','/content/ai_project/smaples_data/eil51.tsp','/content/ai_project/smaples_data/lin318.tsp']
-filepath = ['../smaples_data/gr137.tsp']
+filepath = ['/content/ai_project/sample_data/gr137.tsp']
 for i in filepath:
   prepare_dataset(i)
   
